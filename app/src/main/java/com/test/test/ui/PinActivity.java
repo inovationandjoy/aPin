@@ -164,7 +164,7 @@ public class PinActivity extends AppCompatActivity {
         mButtonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPinString="";
+                //mPinString="";
                 mPinView.setText(mPinString);
                 animateStrings();
             }
@@ -203,11 +203,20 @@ public class PinActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mEditText.setText(vocabulary[mCounter % 3]);
+                        int charIndex = mCounter % 3;
+                        mCounter++;
+                        if(mPinString == null || mPinString.isEmpty() ){
+
+                        }
+
+
+                        char vocabularyIndexChar = mPinString.charAt(charIndex);
+                        int vocabularyIndexInt = Integer.parseInt(vocabularyIndexChar+"");
+                        mEditText.setText(vocabulary[vocabularyIndexInt - 1]);
+
                     }
                 });
-                mCounter++;
-                if(mCounter > 10){
+                if(mCounter >= 9){
                     timer.cancel();
                     stopRecording();
                     runOnUiThread(new Runnable() {
@@ -459,6 +468,7 @@ public class PinActivity extends AppCompatActivity {
         try {
             jsonObject.accumulate("application", RequestHelper.APP_MODEL_URL);
             //jsonObject.accumulate("consumer", RequestHelper.getFromPref(PinActivity.this, RequestHelper.CONSUMER_HREF_KEY));
+            //hardcoded value must be removed later
             jsonObject.accumulate("consumer", "https:/api.knurld.io/v1/consumers/4086608e6f4659c24cd19bdc8d867cf9");
         } catch (JSONException e) {
             Toast.makeText(PinActivity.this, "In create enrollment:" + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -466,8 +476,6 @@ public class PinActivity extends AppCompatActivity {
         CustomRequest enrollmentRequest = new CustomRequest(Request.Method.POST, url, jsonObject.toString(), responseListner, errorListener);
         RequestQueue.submit(this, enrollmentRequest, true);
     }
-
-
 
     private void postEnrollment(final String enrollmentUrl, JSONObject response) {
         Response.Listener<JSONObject> responseListner = new Response.Listener<JSONObject>() {
