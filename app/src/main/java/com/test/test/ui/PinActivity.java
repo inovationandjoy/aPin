@@ -458,7 +458,8 @@ public class PinActivity extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.accumulate("application", RequestHelper.APP_MODEL_URL);
-            jsonObject.accumulate("consumer", RequestHelper.getFromPref(PinActivity.this, RequestHelper.CONSUMER_HREF_KEY));
+            //jsonObject.accumulate("consumer", RequestHelper.getFromPref(PinActivity.this, RequestHelper.CONSUMER_HREF_KEY));
+            jsonObject.accumulate("consumer", "https:/api.knurld.io/v1/consumers/4086608e6f4659c24cd19bdc8d867cf9");
         } catch (JSONException e) {
             Toast.makeText(PinActivity.this, "In create enrollment:" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
