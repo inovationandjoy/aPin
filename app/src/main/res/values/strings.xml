@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">ui</string>
+    <string-array name="vocabulary">
+        <item>Boston</item>
+        <item>Chicago</item>
+        <item>Pyramid</item>
+    </string-array>
+    <string name="host">https://api.knurld.io/</string>
+    <string name="api_version">v1</string>
+
+
+    <!--<string name="client_id">IpctcXXX</string>-->
+    <!--<string name="client_secret">zojtWjAnqXXX</string>-->
+    <!--&lt;!&ndash; Do not put Bearer: in developer id&ndash;&gt;-->
+    <!--<string name="developer_id">eyJhbGciXXXXXXX</string>-->
+    <!--<string name="dropbox_access_token">UmDUkC6dXXXXX</string>-->
+    <!--<string name="app_model">5571c3a5c203f17826740e9019cb0ac0</string>-->
+
+
+    <string name="client_id">zqw1SzAeuob1G06klmBdUGIGCNurkRH1</string>
+    <string name="client_secret">Xyoi3t3pw7B4BuLG</string>
+    <!-- Do not put Bearer: in developer id-->
+    <string name="developer_id">eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDQ4MTY5MDUsInJvbGUiOiJhZG1pbiIsImlkIjoiNDA4NjYwOGU2ZjQ2NTljMjRjZDE5YmRjOGQ4NjRiODEiLCJ0ZW5hbnQiOiJ0ZW5hbnRfbXJwdGF4M3Buenl4b3l6c29yeWc0NnRibTV4dGczZGNuenRob3l6dXBlenhhM3R2IiwibmFtZSI6ImFkbWluIn0._1-Twv23Pu2tpTgV4c2ckgBiL85qgOqkx1J3pdlm13aqSv7-_3ZB6MWNqtIZefEcoRmm9IpIqMD1N1Ak68GK5A</string>
+    <string name="dropbox_access_token">23BGwE7xFHAAAAAAAAAACNhCDXyPb6XkwhJUY1C3xv8Y6OBExwCse-Vdq3YrXUg0</string>
+    <string name="app_model">4086608e6f4659c24cd19bdc8d8658bb</string>
+
+</resources>
