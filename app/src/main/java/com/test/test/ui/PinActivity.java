@@ -17,11 +17,13 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.test.test.net.RequestQueue;
 import com.test.test.net.CustomRequest;
+import com.test.test.net.RequestQueue;
+import com.test.test.rest.AudioPinApi;
+import com.test.test.rest.AudioPinApiHelper;
+import com.test.test.util.AudioHelper;
 import com.test.test.util.AudioPinUtil;
 import com.test.test.util.DropBoxUtil;
-import com.test.test.util.AudioHelper;
 import com.test.test.util.RequestHelper;
 import com.test.test.vad.WordDetection;
 import com.test.test.vad.WordInterval;
@@ -38,6 +40,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class PinActivity extends AppCompatActivity {
     private Button mButton0;
@@ -76,6 +81,8 @@ public class PinActivity extends AppCompatActivity {
 
         vocabulary = getResources().getStringArray(R.array.vocabulary);
         RequestHelper.initApp(getResources());
+        AudioPinApiHelper.init(getBaseContext());
+
 
     }
 
@@ -482,6 +489,7 @@ public class PinActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 Toast.makeText(PinActivity.this, "Successfully enrolled voice...", Toast.LENGTH_SHORT).show();
+                //fetchEnrollmentInfo(AudioPinApiHelper.getClientId());
             }
         };
 
@@ -507,4 +515,43 @@ public class PinActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue.submit(this, enrollmentRequest, true);
     }
+
+    public void fetchAuthToken(){
+        AudioPinApiHelper.init(getBaseContext());
+        AudioPinApi.getInstance()
+                .authToken()
+                .enqueue(new Callback<Object>() {
+                    @Override
+                    public void onResponse(Call<Object> call, retrofit2.Response<Object> response) {
+                        int statusCode = response.code();
+                        Object timeCard = response.body();
+                    }
+                    @Override
+                    public void onFailure(Call<Object> call, Throwable t) {
+                       int ii = 0;
+                    }
+                });
+    }
+
+
+    public void fetchEnrollmentInfo(String clientId){
+        AudioPinApiHelper.init(getBaseContext());
+        AudioPinApi.getInstance()
+                .getEnrollmentInfo(clientId)
+                .enqueue(new Callback<Object>() {
+                    @Override
+                    public void onResponse(Call<Object> call, retrofit2.Response<Object> response) {
+                        int statusCode = response.code();
+                        Object timeCard = response.body();
+                    }
+                    @Override
+                    public void onFailure(Call<Object> call, Throwable t) {
+                        int ii = 0;
+                    }
+                });
+    }
+
+
+
+
 }
